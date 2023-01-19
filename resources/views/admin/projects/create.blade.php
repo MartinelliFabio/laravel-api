@@ -61,8 +61,7 @@
 
                 {{-- lvl_diff --}}
                 <label for="lvl_dif" class="form-label">livello di dificolta </label>
-                <input type="number" class="form-control @error('lvl_dif') is-invalid @enderror" id="lvl_dif"
-                    name="lvl_dif">
+                <input type="number" class="form-control @error('lvl_dif') is-invalid @enderror" id="lvl_dif" name="lvl_dif">
                 @error('lvl_dif')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
