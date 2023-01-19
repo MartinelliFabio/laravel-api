@@ -1,19 +1,20 @@
 @extends('layouts.admin')
 @section('content')
     <h1>Show Post</h1>
-    <div>Nome: {{ $project->name_proj }}</div>
+    <div><strong>Nome:</strong> {{ $project->name_proj }}</div>
 
     @if ($project->type)
-        <td>{{ $project->type->workflow }}</td>
+        <div><strong>Workflow:</strong> {{ $project->type->workflow }}</div>
     @else
-        <td>/</td>
+        <div>/</div>
     @endif
     @if (count($project->languages))
+        <strong>Linguaggi:</strong>
         @foreach ($project->languages as $language)
             <div>{{ $language->name }}</div>
         @endforeach
     @endif
-    <div>Difficoltà: {{ $project->lvl_dif }}</div>
-    <div>Framework: {{ $project->dev_framework }}</div>
-    <div>Team: {{ $project->team }}</div>
+    <div><strong>Difficoltà:</strong> {{ $project->lvl_dif }}</div>
+    <div><strong>Framework:</strong> {{ $project->dev_framework }}</div>
+    <div><strong>Team:</strong> {{ $project->team }}</div>
 @endsection
