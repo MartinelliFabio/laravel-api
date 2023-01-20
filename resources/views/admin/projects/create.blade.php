@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-    <h1>Create Project</h1>
+    <h1 class="mb-4">Create Project</h1>
     <div class="row bg-white">
         <div class="col-12">
-            <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" class="p-4">
+            <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" class="">
                 @csrf
                 <div class="mb-3">
                     {{-- name_proj --}}
@@ -28,8 +28,8 @@
                     <label for="description" class="form-label">Descrizione</label>
                     <textarea class="form-control" id="description" name="description"></textarea>
                 </div>
-                {{-- dev_framework --}}
-                <div>
+                {{-- languages --}}
+                <div class="mb-3">
                     <label for="languages">Linguaggi</label> <br>
                     @foreach ($languages as $language)
                         @if (old("languages"))
@@ -41,6 +41,7 @@
                         @endif
                     @endforeach
                 </div>
+                {{-- dev_framework --}}
                 <div class="mb-3">
                     <label for="dev_framework" class="form-label">Framework usati </label>
                     <input class="form-control" id="dev_framework" name="dev_framework">
@@ -52,34 +53,35 @@
                 </div>
 
                 {{-- lvl_diff --}}
-                <label for="lvl_dif" class="form-label">Livello di difficoltà</label>
-                <input type="number" class="form-control @error('lvl_dif') is-invalid @enderror" id="lvl_dif" name="lvl_dif">
-                @error('lvl_dif')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+                <div class="mb-3">
+                    <label for="lvl_dif" class="form-label">Livello di difficoltà</label>
+                    <input type="number" class="form-control @error('lvl_dif') is-invalid @enderror" id="lvl_dif" name="lvl_dif">
+                    @error('lvl_dif')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                {{-- linkgit --}}
+                <div class="mb-3">
+                    <label for="link_git" class="form-label">GhitHub</label>
+                    <input class="form-control" id="link_git" name="link_git">
+                </div>
+                {{-- workflow type --}}
+                <div class="mb-3">
+                    <label for="type_id" class="form-label">Seleziona workflow</label>
+                    <select name="type_id" id="type_id" class="form-control @error('type_id') is-invalid @enderror">
+                        <option value="">Seleziona workflow</option>
+                        @foreach ($types as $type)
+                            <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                                {{ $type->workflow }}</option>
+                        @endforeach
+                    </select>
+                    @error('type_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="reset" class="btn btn-primary">Reset</button>
+            </form>
         </div>
-        {{-- linkgit --}}
-        <div class="mb-3">
-            <label for="link_git" class="form-label">GhitHub</label>
-            <input class="form-control" id="link_git" name="link_git">
-        </div>
-        {{-- workflow type --}}
-        <div class="mb-3">
-            <label for="type_id" class="form-label">Seleziona workflow</label>
-            <select name="type_id" id="type_id" class="form-control @error('type_id') is-invalid @enderror">
-                <option value="">Seleziona workflow</option>
-                @foreach ($types as $type)
-                    <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
-                        {{ $type->workflow }}</option>
-                @endforeach
-            </select>
-            @error('type_id')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-        <button type="reset" class="btn btn-primary">Reset</button>
-        </form>
-    </div>
     </div>
 @endsection
