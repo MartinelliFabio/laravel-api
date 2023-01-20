@@ -16,5 +16,7 @@
     @endif
     <div><strong>Difficoltà:</strong> {{ $project->lvl_dif }}</div>
     <div><strong>Framework:</strong> {{ $project->dev_framework }}</div>
+    <div><strong>Link Github:</strong> {{ $project->link_git }}</div>
+    <div><strong>Immagine:</strong> {{ $project->cover_image }}</div>
     <div><strong>Team:</strong> {{ $project->team }}</div>
 @endsection
