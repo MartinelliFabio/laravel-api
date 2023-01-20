@@ -93,6 +93,7 @@
                     @foreach ($languages as $language)
                         @if (old("languages"))
                             <input type="checkbox" name="languages[]" value="{{ $language->id }}" {{in_array( $language->id, old("languages", []) ) ? 'checked' : ''}}>
+                            <span class="text-capitalize">{{ $language->name }}</span>
                             @else
                             <input type="checkbox" name="languages[]" value="{{ $language->id }} " {{ old('languages', $project->languages) ? (old('languages', $project->languages)->contains($language->id) ? 'checked' : '') : '' }}>
                             <span class="text-capitalize">{{ $language->name }}</span>

@@ -25,45 +25,34 @@
                 </div>
                 {{-- description --}}
                 <div class="mb-3">
-                    <label for="description" class="form-label">description</label>
+                    <label for="description" class="form-label">Descrizione</label>
                     <textarea class="form-control" id="description" name="description"></textarea>
                 </div>
-                {{-- dev lang  
-                <div class="mb-3">
-                    <label for="dev_lang" class="form-label">Linguaggi di programmazione</label>
-                    <input type="text" class="form-control @error('dev_lang') is-invalid @enderror" id="dev_lang"
-                        name="dev_lang">
-                    @error('dev_lang')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div> --}}
                 {{-- dev_framework --}}
                 <div>
                     <label for="languages">Linguaggi</label> <br>
                     @foreach ($languages as $language)
                         @if (old("languages"))
                             <input type="checkbox" name="languages[]" value="{{ $language->id }}" {{in_array( $language->id, old("languages", []) ) ? 'checked' : ''}}>
+                            <span class="text-capitalize">{{ $language->name }}</span>
                             @else
                             <input type="checkbox" name="languages[]" value="{{ $language->id }} " {{ old('languages', $project->languages) ? (old('languages', $project->languages)->contains($language->id) ? 'checked' : '') : '' }}>
                             <span class="text-capitalize">{{ $language->name }}</span>
                         @endif
                     @endforeach
-                    {{-- @error('languages')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror --}}
                 </div>
                 <div class="mb-3">
-                    <label for="dev_framework" class="form-label">framework usati </label>
+                    <label for="dev_framework" class="form-label">Framework usati </label>
                     <input class="form-control" id="dev_framework" name="dev_framework">
                 </div>
                 {{-- team --}}
                 <div class="mb-3">
-                    <label for="team" class="form-label">team </label>
+                    <label for="team" class="form-label">Team</label>
                     <input class="form-control" id="team" name="team">
                 </div>
 
                 {{-- lvl_diff --}}
-                <label for="lvl_dif" class="form-label">livello di dificolta </label>
+                <label for="lvl_dif" class="form-label">Livello di difficoltà</label>
                 <input type="number" class="form-control @error('lvl_dif') is-invalid @enderror" id="lvl_dif" name="lvl_dif">
                 @error('lvl_dif')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -71,9 +60,10 @@
         </div>
         {{-- linkgit --}}
         <div class="mb-3">
-            <label for="link_git" class="form-label">GhitHub </label>
+            <label for="link_git" class="form-label">GhitHub</label>
             <input class="form-control" id="link_git" name="link_git">
         </div>
+        {{-- workflow type --}}
         <div class="mb-3">
             <label for="type_id" class="form-label">Seleziona workflow</label>
             <select name="type_id" id="type_id" class="form-control @error('type_id') is-invalid @enderror">
@@ -87,9 +77,6 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        {{-- workflow type --}}
-
-
         <button type="submit" class="btn btn-success">Submit</button>
         <button type="reset" class="btn btn-primary">Reset</button>
         </form>

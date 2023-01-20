@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
-    <h1>TIPI DI WORKFLOW</h1>
-    <a href="{{ route('admin.types.create') }}">Aggiungi un workflow </a>
+    <h1>Tipi di Workflow</h1>
+    <button class="btn btn-primary mb-5 mt-3"><a href="{{ route('admin.types.create') }}" class="text-white text-decoration-none">Aggiungi un workflow </a></button>
     @if (session()->has('message'))
         <div class="alert alert-success mb-3 mt-3">
             {{ session()->get('message') }}
@@ -11,26 +11,26 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Title</th>
-
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
+                <th class="text-center" scope="col">Title</th>
+                <th class="text-center" scope="col">Edit</th>
+                <th class="text-center" scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($types as $type)
                 <tr>
                     <th scope="row">{{ $type->id }}</th>
-                    <td><a href="{{ route('admin.types.show', $type->slug) }}" title="View project">{{ $type->workflow }}</a>
+                    <td class="text-center">
+                        <a href="{{ route('admin.types.show', $type->slug) }}" title="View project">{{ $type->workflow }}</a>
                     </td>
-
-                    <td><a class="link-secondary" href="{{ route('admin.types.edit', $type->slug) }}"
-                            title="Edit project"><i class="fa-solid fa-pen"></i></a></td>
-                    <td>
+                    <td class="text-center">
+                        <a class="link-secondary" href="{{ route('admin.types.edit', $type->slug) }}" title="Edit project"><i class="fa-solid fa-pen"></i></a>
+                    </td>
+                    <td class="text-center">
                         <form action="{{ route('admin.types.destroy', $type->slug) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="delete-button btn btn-danger ms-3"
+                            <button type="submit" class="delete-button btn btn-danger"
                                 data-item-title="{{ $type->workflow }}"> <i class="fa-solid fa-trash-can"></i></button>
 
                         </form>
